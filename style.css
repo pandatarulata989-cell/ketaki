@@ -1502,6 +1502,27 @@ button {
   padding-top: 8px;
 }
 
+.form-error {
+  display: none;
+  color: #c62828;
+  font-weight: 600;
+  font-size: 0.9rem;
+  text-align: center;
+  padding-top: 8px;
+}
+
+.field-error {
+  color: #c62828;
+  font-size: 0.78rem;
+  min-height: 1em;
+}
+
+.form-group input[aria-invalid="true"],
+.form-group select[aria-invalid="true"],
+.form-group textarea[aria-invalid="true"] {
+  border-color: #c62828;
+}
+
 /* Lightbox */
 .lightbox {
   position: fixed;

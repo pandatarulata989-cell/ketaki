@@ -554,32 +554,37 @@
           <a href="tel:+919439015898">+91 94390 15898</a>
         </div>
       </div>
+      <div class="form-success" data-fs-success>Thank you! Our design director will reach out within 24 hours.</div>
+      <div class="form-error" data-fs-error></div>
       <form class="quote-form" id="quoteForm">
         <div class="form-row">
           <div class="form-group">
             <label for="clientName">Your Name</label>
-            <input type="text" id="clientName" placeholder="e.g. Ananya Sharma" required>
+            <input type="text" id="clientName" name="name" placeholder="e.g. Ananya Sharma" required data-fs-field>
+            <span class="field-error" data-fs-error="name"></span>
           </div>
           <div class="form-group">
             <label for="clientPhone">Phone Number</label>
-            <input type="tel" id="clientPhone" placeholder="+91 98765 43210" required>
+            <input type="tel" id="clientPhone" name="phone" placeholder="+91 98765 43210" required data-fs-field>
+            <span class="field-error" data-fs-error="phone"></span>
           </div>
         </div>
 
         <div class="form-row">
           <div class="form-group">
             <label for="propertyType">Project Type</label>
-            <select id="propertyType" required>
+            <select id="propertyType" name="projectType" required data-fs-field>
               <option value="" disabled selected>Select Property Type</option>
               <option value="apartment">2BHK / 3BHK Apartment</option>
               <option value="villa">Luxury Villa / Penthouse</option>
               <option value="renovation">Complete Renovation</option>
               <option value="commercial">Studio / Commercial</option>
             </select>
+            <span class="field-error" data-fs-error="projectType"></span>
           </div>
           <div class="form-group">
             <label for="budget">Estimated Budget</label>
-            <select id="budget">
+            <select id="budget" name="budget" data-fs-field>
               <option value="standard">₹10 Lakh - ₹25 Lakh</option>
               <option value="premium">₹25 Lakh - ₹50 Lakh</option>
               <option value="luxury">₹50 Lakh +</option>
@@ -589,15 +594,30 @@
 
         <div class="form-group">
           <label for="notes">Tell us about your requirements</label>
-          <textarea id="notes" rows="3" placeholder="Number of rooms, design preferences, timeline..."></textarea>
+          <textarea id="notes" name="message" rows="3" placeholder="Number of rooms, design preferences, timeline..." data-fs-field></textarea>
+          <span class="field-error" data-fs-error="message"></span>
         </div>
 
-        <button type="submit" class="btn-submit">SUBMIT DESIGN REQUEST</button>
-        <p class="form-success" id="formSuccess">Thank you! Our design director will reach out within 24 hours.</p>
+        <button type="submit" class="btn-submit" data-fs-submit-btn>SUBMIT DESIGN REQUEST</button>
       </form>
     </div>
   </div>
 
+  <script>
+    window.formspree = window.formspree || function () { (formspree.q = formspree.q || []).push(arguments); };
+    formspree('initForm', {
+      formElement: '#quoteForm',
+      formId: 'mpppbnjd',
+      onSuccess: function () {
+        // Close the modal after 3 seconds on success
+        setTimeout(function () {
+          var modal = document.getElementById('quoteModal');
+          if (modal) modal.classList.remove('active');
+        }, 3000);
+      }
+    });
+  </script>
+  <script src="https://unpkg.com/@formspree/ajax@1" defer></script>
   <script src="script.js"></script>
 </body>
 

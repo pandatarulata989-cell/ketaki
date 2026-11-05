@@ -71,7 +71,6 @@ document.addEventListener('DOMContentLoaded', () => {
   const modalClose = document.getElementById('modalClose');
   const openQuoteBtns = document.querySelectorAll('.open-quote-btn');
   const quoteForm = document.getElementById('quoteForm');
-  const formSuccess = document.getElementById('formSuccess');
 
   const openModal = (e) => {
     if (e) e.preventDefault();
@@ -104,27 +103,8 @@ document.addEventListener('DOMContentLoaded', () => {
     }
   });
 
-  // Handle Form Submission
-  if (quoteForm) {
-    quoteForm.addEventListener('submit', (e) => {
-      e.preventDefault();
-      const submitBtn = quoteForm.querySelector('.btn-submit');
-      submitBtn.textContent = 'SUBMITTING...';
-      submitBtn.disabled = true;
-
-      setTimeout(() => {
-        quoteForm.reset();
-        submitBtn.textContent = 'SUBMIT DESIGN REQUEST';
-        submitBtn.disabled = false;
-        if (formSuccess) formSuccess.style.display = 'block';
-
-        setTimeout(() => {
-          closeModal();
-          if (formSuccess) formSuccess.style.display = 'none';
-        }, 3000);
-      }, 700);
-    });
-  }
+  // Handle Form Submission — handled by @formspree/ajax via data attributes.
+  // The formspree library manages submit, success, and error states automatically.
 
   // 5. Portfolio Filtering
   const filterBtns = document.querySelectorAll('.filter-btn');
